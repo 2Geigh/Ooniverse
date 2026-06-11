@@ -1,0 +1,11 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/2geigh/Documents/GitHub/Universe-Simulation/cmake_install.cmake",
+		"/Users/2geigh/Documents/GitHub/Universe-Simulation/src/cmake_install.cmake",
+		"/Users/2geigh/Documents/GitHub/Universe-Simulation/examples/cmake_install.cmake",
+		"/Users/2geigh/Documents/GitHub/Universe-Simulation/tests/cmake_install.cmake",
+		"/Users/2geigh/Documents/GitHub/Universe-Simulation/docs/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
