@@ -6,8 +6,14 @@
 			"command": "echo hello",
 			"type": "shell",
 			"args": [
+				"-std=c++17",
 				"-I${workspaceFolder}/include",
-				"-I${workspaceFolder}/lib"
+				"-L${workspaceFolder}/lib",
+				"${workspaceFolder}/src/*.cpp",
+				"${workspaceFolder}/src/glad.c",
+				"-lglfw3dll",
+				"-o",
+				"${workspaceFolder}/zmrr"
 			],
 			"problemMatcher": ["$tsc"],
 			"presentation": {

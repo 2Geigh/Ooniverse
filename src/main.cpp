@@ -1,6 +1,7 @@
-#include <iostream>
+#include <cstdio>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+
 
 using namespace std; 
 
@@ -9,8 +10,10 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
     glViewport(0, 0, width, height);
 }
 
-int main()
-{
+int main() {
+
+  printf("hello world\n");
+  
     if (!glfwInit())
     {
         cout << "Failed to initialize GLFW" << endl;
