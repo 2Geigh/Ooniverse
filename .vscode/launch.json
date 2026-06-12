@@ -5,18 +5,7 @@
       "name": "C/C++ Runner: Debug Session",
       "type": "lldb",
       "request": "launch",
-      "args": [
-				"-std=c++17",
-				"-I${workspaceFolder}/include",
-				"${workspaceFolder}/src/main.cpp",
-				"${workspaceFolder}/src/glad.c",
-				"-o",
-				"${workspaceFolder}/zmrr",
-				"-L${workspaceFolder}/lib",
-				"${workspaceFolder}/lib/libglfw.3.dylib",
-				"-framework",
-				"OpenGL"
-			],
+      "args": [],
       "cwd": "/Users/2geigh/Documents/GitHub/Universe-Simulation/src",
       "program": "/Users/2geigh/Documents/GitHub/Universe-Simulation/src/build/Debug/outDebug"
     }

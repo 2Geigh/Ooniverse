@@ -1,11 +1,7 @@
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include "../include/glad/glad.h"
+#include <stdio.h>
 
-
-int main() {
-
-    
-
-
-    return 0;
+int main(void) {
+  printf("Hi!\n");
+  return 0;
 }
