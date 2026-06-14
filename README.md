@@ -1,5 +1,13 @@
 # Universe Simulation
 
+## Build
+
+1. `cd build` from the repository root
+2. `cmake ..`
+3. `make`
+
+Compiled executable binary will be at `/build/Ooniverse`.
+
 ## Information by path
 
 ### .vscode
