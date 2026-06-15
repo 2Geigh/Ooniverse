@@ -3,12 +3,18 @@ A simluation of a 2-dimensional universe from from Big Bang to (hopefully) the e
 
 ## Build
 
+### Dependencies
+- OpenGL 3.3 core
+- [GLFW3](https://www.glfw.org/)
+- [Glad](https://glad.dav1d.de/)
+
+### Instructions
 0. `mkdir build`
 1. `cd build` from the repository root
 2. `cmake ..`
 3. `make`
 
-Compiled executable binary will be at `/build/Ooniverse`.
+Compiled executable binary will be `/build/Ooniverse`.
 
 ## Information by path
 
