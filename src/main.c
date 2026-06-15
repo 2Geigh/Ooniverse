@@ -1,13 +1,48 @@
+#include <string.h>
 #define GLFW_INCLUDE_NONE
 #include "../include/GLFW/glfw3.h"
 #include "../include/glad/glad.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 struct Screen {
   int width;
   int height;
   char title[16];
 };
+
+char *get_shader_content(const char *filename) {
+
+  FILE *fp;
+  long size = 0;
+  char *shaderContent;
+
+  // Read file to get size
+  // in "rb", r is "read" and b is "open in binary mode" (no byte conversions
+  // (e.g., translation of newlines))
+  fp = fopen(filename, "rb");
+  if (fp == NULL) {
+    return "";
+  }
+
+  // Get size of file
+  fseek(fp, 0L, SEEK_END); // Aligns the file for reading
+  size =
+      ftell(fp) +
+      1; // Gets length of file based on current position indicator (SEEK_END)
+  fclose(fp);
+
+  // Read file for content
+  fp = fopen(filename, "r");
+  shaderContent = memset(
+      malloc(size), '\0',
+      size); // memset fills a block of memory with a specified value (pointer
+             // to memory block, value to fill, number of bytes to fill)
+  fread(shaderContent, 1, size - 1, fp);
+  fclose(fp);
+
+  return shaderContent;
+}
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
   glViewport(0, 0, width, height);
