@@ -2,6 +2,7 @@
 
 ## Build
 
+0. `mkdir build`
 1. `cd build` from the repository root
 2. `cmake ..`
 3. `make`
