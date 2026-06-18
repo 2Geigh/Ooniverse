@@ -56,6 +56,8 @@ int main(void) {
       .title = "Ooniverse",
   };
 
+  float vertices[] = {-0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 0.0f};
+
   glfwInit();
 
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -76,6 +78,13 @@ int main(void) {
     printf("Failed to initialize GLAD");
     return -1;
   }
+
+  // VBO = Vertex buffer object
+  // A buffer object is a batch-allocation of GPU memory
+  // Allows for faster data transmission to the GPU
+  unsigned int VBO;
+  glad_glGenBuffers(1, &VBO);
+  glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
   glViewport(0, 0, viewport.width, viewport.height);
 
