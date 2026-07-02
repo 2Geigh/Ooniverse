@@ -56,8 +56,6 @@ int main(void) {
       .title = "Ooniverse",
   };
 
-  float vertices[] = {-0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 0.0f};
-
   glfwInit();
 
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -79,12 +77,54 @@ int main(void) {
     return -1;
   }
 
+  float vertices[] = {-0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 0.0f};
+
   // VBO = Vertex buffer object
   // A buffer object is a batch-allocation of GPU memory
   // Allows for faster data transmission to the GPU
   unsigned int VBO;
-  glad_glGenBuffers(1, &VBO);
-  glBindBuffer(GL_ARRAY_BUFFER, VBO);
+  glad_glGenBuffers(1, &VBO); // n = 1 is the buffer's unique ID
+
+  // Buffer binding means becoming the target of all buffer configuration
+  // calls
+  glBindBuffer(GL_ARRAY_BUFFER, // GL_ARRAY_BUFFER is the type of a VBO
+               VBO);
+
+  // Copying vertices data into GL_ARRAY_BUFFER (the currently-bounded VBO)
+  glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+  // GL_STATIC_DRAW: the data is set only once and is used often
+  // GL_STREAM_DRAW: data is set only once and used very little
+  // GL_DYNAMIC_DRAW: data is changed alot and used many times
+
+  unsigned int vertexShader;
+  // vertexShader = glCreateShader(GL_VERTEX_SHADER);
+  const char *vertexShaderSrouce =
+      "#version 330 core\n"
+      // We declare this shader to apply to a
+      // single 3D vector (vec3) we'll call aPos
+      "layout(location = 0) in vec3 aPos;\n"
+
+      "void main() {\n"
+      // What gl_Position is set to at the end of main() is a vertex shader's
+      // output
+      "gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+      "}\0"; // Because a C string is just an array of characters, \0 is a
+             // null
+             // character that signifies the end of a string
+  // Attaches the above shader source string to the declared vertexShader
+  glad_glShaderSource(vertexShader, 1, &vertexShaderSrouce,
+                      NULL); // count is how many strings we're passing as
+                             // shader source code (in this case, 1)
+  glad_glCompileShader(vertexShader);
+
+  int shaderCompilationSuccess;
+  char infoLog[512];
+  glad_glGetShaderiv(vertexShader, GL_COMPILE_STATUS,
+                     &shaderCompilationSuccess);
+  if (!shaderCompilationSuccess) {
+    glad_glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
+    printf("ERROR: SHADER: VERTEX: COMPILATION_FAILED\n%s\n", infoLog);
+  }
 
   glViewport(0, 0, viewport.width, viewport.height);
 
